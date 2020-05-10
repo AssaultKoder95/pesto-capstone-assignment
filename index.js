@@ -2,7 +2,7 @@ var defaults = {
 	selectedArrayType: 'number',
 	inputArrayLength: 10,
 	sortAlgos: ['selection', 'bubble'],
-	searchAlgos: ['linear', 'binary'],
+	searchAlgos: ['linear-search', 'binary-search'],
 };
 
 function updateSearchValueDisplay(select) {
@@ -104,16 +104,22 @@ function startAlgorithmVisualization() {
 	var visualizationTab = document.getElementById('visualization-tab');
 	var searchValue = document.getElementById('search-value').value;
 	visualizationTab.style.display = 'block';
-	// visualizationTab.scrollTo(1000, 0);
 
 	clearUI();
-	
-	document.getElementById('main-form').style.display = 'none';
 
-	if (selectedAlgo === 'linear') {
-		startLinearSearchVisualization(inputArray, searchValue);
-	} else if (selectedAlgo === 'binary') {
-		startBinarySearchVisualization(inputArray, searchValue);
+	if(!searchValue) {
+		alert('Please enter a valid value for search.');
+		return;
+	}
+
+	document.getElementById('main-form').style.display = 'none';
+	
+	var searchType;
+
+	if (selectedAlgo === 'linear-search') {
+		startSearchVisualization(selectedAlgo, inputArray, searchValue);
+	} else if (selectedAlgo === 'binary-search') {
+		startSearchVisualization(selectedAlgo,inputArray, searchValue);
 	} else if (selectedAlgo === 'bubble') {
 		startBubbleSortVisualization(inputArray);
 	} else if (selectedAlgo === 'selection') {
