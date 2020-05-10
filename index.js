@@ -1,7 +1,7 @@
 var defaults = {
 	selectedArrayType: 'number',
 	inputArrayLength: 10,
-	sortAlgos: ['selection', 'bubble'],
+	sortAlgos: ['selection-sort', 'bubble-sort'],
 	searchAlgos: ['linear-search', 'binary-search'],
 };
 
@@ -37,7 +37,7 @@ function createArray() {
 }
 
 function createRandomNumber() {
-	var max = 10000;
+	var max = 1000;
 	var min = 1;
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -98,21 +98,17 @@ function startAlgorithmVisualization() {
 	var searchValue = document.getElementById('search-value').value;
 	visualizationTab.style.display = 'block';
 
-	if(!searchValue) {
+	if(!searchValue && defaults.searchAlgos.includes(selectedAlgo)) {
 		alert('Please enter a valid value for search.');
 		return;
 	}
 
 	document.getElementById('main-form').style.display = 'none';
 
-	if (selectedAlgo === 'linear-search') {
+	if (selectedAlgo === 'linear-search' || selectedAlgo === 'binary-search') {
 		startSearchVisualization(selectedAlgo, inputArray, searchValue);
-	} else if (selectedAlgo === 'binary-search') {
-		startSearchVisualization(selectedAlgo,inputArray, searchValue);
-	} else if (selectedAlgo === 'bubble') {
-		startBubbleSortVisualization(inputArray);
-	} else if (selectedAlgo === 'selection') {
-		startSelectionSortVisualization(inputArray);
+	} else if (selectedAlgo === 'bubble-sort' || selectedAlgo === 'selection-sort') {
+		startSortVisualization(selectedAlgo, inputArray);
 	} else {
 		alert('No algorithm selected. Please select one and proceed.');
 	}

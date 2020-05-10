@@ -18,10 +18,14 @@ function createBoxUI(searchType, arr, searchValue) {
 	var mainDiv = document.createElement('div');
 	var algorithmInfoDiv = createInfoUI('Algorithm Type:' + searchType);
 	var arrayInfoDiv = createInfoUI('Array: ');
-	var searchValueInfoDiv = createInfoUI('Search Value: ' + searchValue);
+	var searchValueInfoDiv = document.createElement('div');
+
+	if(!!searchValue) {
+		searchValueInfoDiv = createInfoUI('Search Value: ' + searchValue);
+	}
 
 	var arrayElementDiv = document.createElement('div');
-	arrayElementDiv.setAttribute('id', 'search-array-elements');
+	arrayElementDiv.setAttribute('id', 'input-array-elements');
 
 	arr.forEach(function (val, index) {
 		var elementDiv = document.createElement('span');
@@ -46,7 +50,7 @@ function createBoxUI(searchType, arr, searchValue) {
 	return mainDiv;
 }
 
-function createUI(searchType, arr, searchValue) {
+function createSearchUI(searchType, arr, searchValue) {
 
 	if (searchType === 'binary-search') {
 		arr = arr.map(e => parseInt(e, 10)).sort((a,b) => a - b);
@@ -58,12 +62,24 @@ function createUI(searchType, arr, searchValue) {
 	searchElement.style.display = 'block';
 }
 
+function createSortUI(sortType, arr) {
+	var UI = createBoxUI(sortType, arr);
+	var searchElement = document.getElementById(sortType);
+	searchElement.appendChild(UI);
+	searchElement.style.display = 'block';
+}
+
 function addHighlight(id) {
 	document.getElementById(id).classList.add('boxed-element-highlight');
 }
 
+function addSecondaryHighlight(id) {
+	document.getElementById(id).classList.add('boxed-element-highlight-secondary');
+}
+
 function removeHighlight(id) {
 	document.getElementById(id).classList.remove('boxed-element-highlight');
+	document.getElementById(id).classList.remove('boxed-element-highlight-secondary');
 	document.getElementById(id).classList.add('boxed-element-unfocus');
 }
 
@@ -72,9 +88,9 @@ function addElementFoundHighlight(id) {
 	document.getElementById(id).classList.add('boxed-element-found');
 }
 
-async function searchValueInArray(searchType, searchValue) {
+function searchValueInArray(searchType, searchValue) {
 	var spans = document
-		.getElementById('search-array-elements')
+		.getElementById('input-array-elements')
 		.getElementsByTagName('span');
 
 	if (searchType === 'linear-search') {
@@ -83,6 +99,28 @@ async function searchValueInArray(searchType, searchValue) {
 		searchElementUsingBinarySearch(searchType, spans, searchValue);
 	}
 }
+
+function sortValuesInArray(sortType) {
+	var spans = document
+		.getElementById('input-array-elements')
+		.getElementsByTagName('span');
+
+	if (sortType === 'bubble-sort') {
+		sortElementsUsingBubbleSort(spans);
+	} else if (sortType === 'selection-sort') {
+		sortElementsUsingSelectionSort(spans);
+	}
+}
+
+function addResetButtonDiv(containerDiv) {
+	var resetButton = document.createElement('button');
+	var lineBreak = document.createElement("BR");
+	resetButton.innerHTML = 'Reset Form';
+	resetButton.onclick = toggleVisualizationUI;
+	resetButton.className = 'btn btn-info';
+	containerDiv.appendChild(lineBreak);
+	containerDiv.append(resetButton);
+} 
 
 function displayResults(searchType) {
 	var foundElement = document.getElementsByClassName('boxed-element-found');
@@ -98,12 +136,7 @@ function displayResults(searchType) {
 	}
 
 	resultDiv.append(resultInfoDiv);
-
-	var resetButton = document.createElement('button');
-	resetButton.innerHTML = 'Reset Form';
-	resetButton.onclick = toggleVisualizationUI;
-	resetButton.className = 'btn btn-info';
-	resultDiv.append(resetButton);
+	addResetButtonDiv(resultDiv);
 
 	var searchElement = document.getElementById(searchType);
 	searchElement.appendChild(resultDiv);
