@@ -37,7 +37,7 @@ function createArray() {
 }
 
 function createRandomNumber() {
-	var max = 10000;
+	var max = 1000;
 	var min = 1;
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
