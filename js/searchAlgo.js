@@ -1,5 +1,5 @@
 function startSearchVisualization(searchType, arr, searchValue) {
-	createUI(searchType, arr, searchValue);
+	createSearchUI(searchType, arr, searchValue);
 	searchValueInArray(searchType, searchValue);
 }
 
