@@ -88,6 +88,12 @@ function displayResults() {
 
     resultDiv.append(resultInfoDiv);
 
+    var resetButton = document.createElement("BUTTON");
+    resetButton.innerHTML = "Reset Form";
+    resetButton.onclick = toggleUI;
+    resetButton.className = 'btn btn-info';
+    resultDiv.append(resetButton);
+
     var linearSearchElement = document.getElementById('linear-search');
     linearSearchElement.appendChild(resultDiv);
 }

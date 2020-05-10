@@ -26,7 +26,7 @@
                     <div class="text-center mt-3">
                         <h3> Algorithm Visualization </h3>
                     </div>
-                    <form class="p-5" onsubmit="event.preventDefault();">
+                    <form id='main-form' class="p-5" onsubmit="event.preventDefault();">
                         <div class="row mt-2">
                             <div class="col">
                                 <label for="algorithm-type">Algorithm Type</label>
@@ -90,10 +90,26 @@
         <div class="row mt-4">
             <div class="col">
                 <section id="visualization-tab" class="visualization-tab" style="display: none" ;>
-                    <div id="linear-search" style="display: none"></div>
-                    <div id="binary-search" style="display: none"></div>
-                    <div id="selection-sort" style="display: none"></div>
-                    <div id="bubble-sort" style="display: none"></div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="linear-search" style="display: none"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="binary-search" style="display: none"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="selection-sort" style="display: none"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="bubble-sort" style="display: none"></div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

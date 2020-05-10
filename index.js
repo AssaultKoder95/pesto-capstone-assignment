@@ -7,12 +7,11 @@ var defaults = {
 
 function updateSearchValueDisplay(select) {
 	var selectedAlgo = select.options[select.selectedIndex].value;
-	if (defaults.sortAlgos.includes(selectedAlgo)) {
-		document.getElementById('bool-search-value').style.display = 'none';
-	}
 
 	if (defaults.searchAlgos.includes(selectedAlgo)) {
 		document.getElementById('bool-search-value').style.display = 'block';
+	} else {
+		document.getElementById('bool-search-value').style.display = 'none';
 	}
 }
 
@@ -82,6 +81,21 @@ function clearUI() {
 	deleteChild('bubble-sort');
 }
 
+function resetUI() {
+	document.getElementById('algorithm-type').selectedIndex = 0;
+	document.getElementById('array-type').selectedIndex = 0;
+	document.getElementById('input-array').value = '';
+	document.getElementById('input-array-length').value = '';
+	document.getElementById('search-value').value = '';
+	updateSearchValueDisplay(document.getElementById('algorithm-type'));
+}
+
+function toggleUI() {
+	resetUI();
+	document.getElementById('main-form').style.display = 'block';
+	document.getElementById('visualization-tab').style.display = 'none';
+}
+
 function startAlgorithmVisualization() {
 	var select = document.getElementById('algorithm-type');
 	var selectedAlgo = select.options[select.selectedIndex].value;
@@ -93,6 +107,8 @@ function startAlgorithmVisualization() {
 	// visualizationTab.scrollTo(1000, 0);
 
 	clearUI();
+	
+	document.getElementById('main-form').style.display = 'none';
 
 	if (selectedAlgo === 'linear') {
 		startLinearSearchVisualization(inputArray, searchValue);
