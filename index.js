@@ -33,20 +33,11 @@ function createArray() {
 		alert('No array type selected. Please select one and proceed.');
 	}
 
-	// add error handler here - if it is not defined
-
-	/* Purposely not implemented - will add it in V2 stage
-	else {
-		createdArray.fill('');
-		createdArray = createdArray.map(createRandomString);
-	}
-	*/
-
 	document.getElementById('input-array').value = createdArray.toString();
 }
 
 function createRandomNumber() {
-	var max = 100;
+	var max = 10000;
 	var min = 1;
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -74,14 +65,14 @@ function deleteChild(id) {
 	}
 }
 
-function clearUI() {
+function clearVisualizationUI() {
 	deleteChild('linear-search');
 	deleteChild('binary-search');
 	deleteChild('selection-sort');
 	deleteChild('bubble-sort');
 }
 
-function resetUI() {
+function resetMainUI() {
 	document.getElementById('algorithm-type').selectedIndex = 0;
 	document.getElementById('array-type').selectedIndex = 0;
 	document.getElementById('input-array').value = '';
@@ -90,13 +81,15 @@ function resetUI() {
 	updateSearchValueDisplay(document.getElementById('algorithm-type'));
 }
 
-function toggleUI() {
-	resetUI();
+function toggleVisualizationUI() {
+	resetMainUI();
 	document.getElementById('main-form').style.display = 'block';
 	document.getElementById('visualization-tab').style.display = 'none';
 }
 
 function startAlgorithmVisualization() {
+	clearVisualizationUI();
+
 	var select = document.getElementById('algorithm-type');
 	var selectedAlgo = select.options[select.selectedIndex].value;
 	var inputStringValue = document.getElementById('input-array').value;
@@ -105,16 +98,12 @@ function startAlgorithmVisualization() {
 	var searchValue = document.getElementById('search-value').value;
 	visualizationTab.style.display = 'block';
 
-	clearUI();
-
 	if(!searchValue) {
 		alert('Please enter a valid value for search.');
 		return;
 	}
 
 	document.getElementById('main-form').style.display = 'none';
-	
-	var searchType;
 
 	if (selectedAlgo === 'linear-search') {
 		startSearchVisualization(selectedAlgo, inputArray, searchValue);
