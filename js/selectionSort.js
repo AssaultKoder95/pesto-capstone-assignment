@@ -1,1 +1,0 @@
-function startSelectionSortVisualization(arr) {}
