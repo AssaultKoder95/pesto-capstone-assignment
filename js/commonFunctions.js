@@ -101,7 +101,7 @@ function displayResults(searchType) {
 
 	var resetButton = document.createElement('button');
 	resetButton.innerHTML = 'Reset Form';
-	resetButton.onclick = toggleUI;
+	resetButton.onclick = toggleVisualizationUI;
 	resetButton.className = 'btn btn-info';
 	resultDiv.append(resetButton);
 
