@@ -1,0 +1,60 @@
+#root,
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(24deg, #FAACA8 0%, #DDD6F3 80%) no-repeat;
+	height: 100%;
+}
+
+form {
+	padding: 10px;
+	margin: 10px;
+	font-size: 18px;
+	background: #FFF;
+	border-radius: 5px;
+	flex-direction: column;
+}
+
+form input {
+	border-radius: 4px;
+	border: 1px solid #DDD6F3;
+	padding-left: 5px;
+}
+
+.visualization-tab {
+	padding: 10px;
+	margin: 20px 10px;
+	background: #FFF;
+}
+
+#linear-search div .boxed-element {
+	border: 1px solid #bbbbbb;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	padding: 2px 3px 2px 3px;
+	margin: 5px;
+}
+
+#linear-search div .boxed-element-highlight {
+	border: 1px solid lightsalmon;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	padding: 2px 3px 2px 3px;
+	margin: 5px;
+}
+
+#linear-search div .boxed-element-found {
+	border: 1px solid lightgreen;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	padding: 2px 3px 2px 3px;
+	margin: 5px;
+}
+
+#linear-search div .info {
+	margin: 10px 0px;
+}
